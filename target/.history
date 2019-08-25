@@ -1,1 +1,6 @@
 test
+console
+run-main recfun/Main.scala
+exit
+run recfun/Main.scala
+test

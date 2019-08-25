@@ -1,1 +1,7 @@
+/*
+/*/
+!/src/
 *.idea
+*.xml
+*.cache
+*.class
