@@ -23,7 +23,25 @@ object Main {
   /**
    * Exercise 2
    */
-    def balance(chars: List[Char]): Boolean = ???
+    def balance(chars: List[Char]): Boolean = {
+      def countParensAccum(wasBelowZero: Boolean, accum: Int, chars: List[Char]): (Boolean, Int) = {
+//        println(wasBelowZero)
+//        println(accum)
+//        println(chars)
+
+        if (chars.isEmpty)
+          (wasBelowZero,accum)
+        else if (chars.head == '(')
+          countParensAccum(wasBelowZero,accum+1,chars.tail)
+        else if (chars.head == ')')
+          countParensAccum((accum-1 < 0) || wasBelowZero, accum-1,chars.tail)
+        else
+          countParensAccum(wasBelowZero, accum, chars.tail)
+
+      }
+      val result = countParensAccum(false, 0, chars)
+      !result._1 && (result._2==0)
+    }
   
   /**
    * Exercise 3
