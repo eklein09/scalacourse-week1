@@ -25,9 +25,6 @@ object Main {
    */
     def balance(chars: List[Char]): Boolean = {
       def countParensAccum(wasBelowZero: Boolean, accum: Int, chars: List[Char]): (Boolean, Int) = {
-//        println(wasBelowZero)
-//        println(accum)
-//        println(chars)
 
         if (chars.isEmpty)
           (wasBelowZero,accum)
@@ -46,5 +43,14 @@ object Main {
   /**
    * Exercise 3
    */
-    def countChange(money: Int, coins: List[Int]): Int = ???
+    def countChange(money: Int, coins: List[Int]): Int = {
+      if ((money <= 0) || coins.isEmpty)
+        0
+      else {
+          if (money % coins.head == 0)
+            1 + countChange(money, coins.tail) + countChange(money - coins.head, coins.tail)
+          else
+            countChange(money - coins.head, coins.tail) + countChange(money, coins.tail)
+        }
+    }
   }
